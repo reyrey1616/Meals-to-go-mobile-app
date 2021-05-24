@@ -1,21 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import React from "react";
+import RestaurantScreen from "./src/screens/restaurant.screen";
+import { ThemeProvider } from "styled-components/native";
+import {
+	useFonts as useOswald,
+	Oswald_400Regular,
+} from "@expo-google-fonts/oswald";
+import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
+import { theme } from "./src/infrastracture/theme";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+	const [oswaldLoaded] = useOswald({
+		Oswald_400Regular,
+	});
+	const [latoLoaded] = useLato({
+		Lato_400Regular,
+	});
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	if (!oswaldLoaded || !latoLoaded) {
+		return null;
+	}
+	return (
+		<>
+			<ThemeProvider theme={theme}>
+				<RestaurantScreen />
+				<ExpoStatusBar style="auto" />
+			</ThemeProvider>
+		</>
+	);
+}
