@@ -13,6 +13,7 @@ export const LocationContextProvider = ({ children }) => {
 	const onSearch = (searchKeyword = "Antwerp") => {
 		setIsLoading(true);
 		setKeyword(searchKeyword);
+		if (!searchKeyword.length) return;
 		locationRequest(searchKeyword.toLowerCase())
 			.then(locationTransform)
 			.then((result) => {
@@ -23,6 +24,7 @@ export const LocationContextProvider = ({ children }) => {
 			.catch((err) => {
 				setIsLoading(false);
 				setError(err);
+				console.log(err);
 			});
 	};
 
