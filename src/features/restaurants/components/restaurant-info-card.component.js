@@ -15,7 +15,7 @@ import {
 	Icon,
 } from "./restarant-info-card.component";
 
-const RestaurantInfoCard = ({ restaurant = {} }) => {
+export const RestaurantInfoCard = ({ restaurant = {} }) => {
 	const {
 		name = "Some Restaurant",
 		icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
@@ -26,6 +26,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
 		isOpenNow = true,
 		rating = 4,
 		isClosedTemporarily = true,
+		placeId,
 	} = restaurant;
 
 	const ratingArray = Array.from(new Array(Math.ceil(rating)));
@@ -39,7 +40,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
 					<Rating>
 						{ratingArray?.map((item, idx) => (
 							<SvgXml
-								key={idx}
+								key={`star-${placeId}${idx}`}
 								xml={star}
 								width={20}
 								height={20}
@@ -67,5 +68,3 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
 		</RestaurantCard>
 	);
 };
-
-export default RestaurantInfoCard;
