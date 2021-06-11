@@ -10,6 +10,8 @@ import { theme } from "./src/infrastracture/theme";
 
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
+import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
+
 import { AppNavigator } from "./src/infrastracture/navigation/app.navigator";
 export default function App() {
 	const [oswaldLoaded] = useOswald({
@@ -26,11 +28,13 @@ export default function App() {
 	return (
 		<>
 			<ThemeProvider theme={theme}>
-				<LocationContextProvider>
-					<RestaurantsContextProvider>
-						<AppNavigator />
-					</RestaurantsContextProvider>
-				</LocationContextProvider>
+				<FavouritesContextProvider>
+					<LocationContextProvider>
+						<RestaurantsContextProvider>
+							<AppNavigator />
+						</RestaurantsContextProvider>
+					</LocationContextProvider>
+				</FavouritesContextProvider>
 			</ThemeProvider>
 			<ExpoStatusBar style="auto" />
 		</>

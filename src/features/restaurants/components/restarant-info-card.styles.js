@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { View, Image } from "react-native";
+import { View } from "react-native";
 import { Card } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
 
